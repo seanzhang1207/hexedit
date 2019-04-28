@@ -346,26 +346,29 @@ int key_to_function(int key)
       /*no-op*/
       break;
 
+    // Move cursor one char right
     case KEY_RIGHT:
     case CTRL('F'):
       forward_char();
       break;
 
+    // Move cursor one char left
     case KEY_LEFT:
     case CTRL('B'):
       backward_char();
       break;
 
+    // Move down one line
     case KEY_DOWN:
-    case CTRL('N'):
       next_line();
       break;
 
+    // Move up one line
     case KEY_UP:
-    case CTRL('P'):
       previous_line();
       break;
 
+    // 
     case ALT('F'):
       forward_chars();
       break;
@@ -393,38 +396,38 @@ int key_to_function(int key)
       break;
 
     case KEY_NPAGE:
-    case CTRL('V'):
     case KEY_F(6):
+    case '>':
       scroll_up();
       break;
 
     case KEY_PPAGE:
-    case ALT('V'):
     case KEY_F(5):
+    case '<':
       scroll_down();
       break;
 
-    case '<':
-    case ALT('<'):
+    case '{':
+    case ALT('{'):
       beginning_of_buffer();
       break;
 
-    case '>':
-    case ALT('>'):
+    case '}':
+    case ALT('}'):
       end_of_buffer();
       break;
 
     case KEY_SUSPEND:
-    case CTRL('Z'):
+    case CTRL('U'):
       suspend();
       break;
 
-    case CTRL('U'):
+    case CTRL('Z'):
     case CTRL('_'):
       undo();
       break;
 
-    case CTRL('Q'):
+    case 'I':
       quoted_insert();
       break;
 
@@ -434,11 +437,11 @@ int key_to_function(int key)
       break;
 
     case '/':
-    case CTRL('S'):
+    case 'S':
       search_forward();
       break;
 
-    case CTRL('R'):
+    case 'R':
       search_backward();
       break;
 
@@ -457,7 +460,7 @@ int key_to_function(int key)
       if (mode == bySector) goto_sector(); else goto_char();
       break;
 
-    case CTRL('W'):
+    case CTRL('S'):
     case KEY_F(2):
       save_buffer();
       break;
@@ -495,20 +498,21 @@ int key_to_function(int key)
       break;
 
     case CTRL('D'):
-    case ALT('W'):
+    case CTRL('C'):
     case KEY_DC:
     case KEY_F(7):
     case 0x7F: /* found on a sun */
       copy_region();
       break;
 
-    case CTRL('Y'):
+    case CTRL('V'):
     case KEY_IC:
     case KEY_F(8):
       yank();
       break;
 
     case ALT('Y'):
+    case CTRL('N'):
     case KEY_F(11):
       yank_to_a_file();
       break;
@@ -518,7 +522,7 @@ int key_to_function(int key)
       fill_with_string();
       break;
 
-    case CTRL('C'):
+    case CTRL('Q'):
       quit();
       break;
 
