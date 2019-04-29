@@ -9,3 +9,8 @@ Makefile-build
 
 #compiled object files
 *.o
+config.log
+config.status
+hexedit.1
+.vscode
+autom4te.cache
